@@ -1,14 +1,14 @@
-#include<iostream>
+#include <set> // ต้องเพิ่ม Library นี้เพื่อให้ใช้ set ได้
 
-using namespace std;
-
-//Write function count() here.
-
-int main(){	
-	int data[] = {1,2,4,5,4,8,2,1,2,4,6,1,4,4,4,2,1,0,12}; 
-	
-	cout << "There are " << count(data,sizeof(data)/sizeof(int)); 
-	cout << " different numbers in data.";
-	
-	return 0;
+int count(int data[], int size) {
+    // สร้าง set ของเลข integer
+    set<int> unique_numbers;
+    
+    // วนลูปนำข้อมูลจาก array ใส่เข้าไปใน set
+    for(int i = 0; i < size; i++) {
+        unique_numbers.insert(data[i]);
+    }
+    
+    // จำนวนสมาชิกใน set คือจำนวนตัวเลขที่ไม่ซ้ำกัน
+    return unique_numbers.size();
 }
