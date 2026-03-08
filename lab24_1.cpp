@@ -64,3 +64,27 @@ void List::append(int d){
 }
 
 //Write List::remove() here
+void List::remove(int idx){
+    if(root == NULL) return; // กรณี List ว่าง
+
+    Node *toBeDeleted;
+
+    if(idx == 0){
+        // กรณีลบ Node แรก (Root)
+        toBeDeleted = root;
+        root = root->next;
+    } else {
+        // กรณีลบ Node ที่ตำแหน่งอื่นๆ
+        Node *current = root;
+        for(int i = 0; i < idx - 1; i++){
+            current = current->next;
+        }
+        // เลือก Node ที่ต้องการลบ
+        toBeDeleted = current->next;
+        // เชื่อม Pointer ข้าม Node นั้นไป
+        current->next = toBeDeleted->next;
+    }
+
+    delete toBeDeleted; // ทำลาย Node และเรียก Destructor (~Node)
+    size--;
+}
